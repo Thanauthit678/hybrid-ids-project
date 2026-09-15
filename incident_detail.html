@@ -1,0 +1,24 @@
+{% extends "base_app.html" %}
+{% block title %}รายละเอียดเหตุการณ์{% endblock %}
+{% block content %}
+        <!-- DETAIL VIEW -->
+        <section class="view on" id="vDetail" data-incident-id="{{ incident_id }}">
+          <div class="vh">
+            <div><h1 id="dTitle">รายละเอียดเหตุการณ์</h1><p id="dSub">—</p></div>
+            <button class="btn btn-s ghost" onclick="location.href='{{ url_for('incidents') }}'">กลับไปบันทึกเหตุการณ์</button>
+          </div>
+          <div class="dt-top" id="dTop"></div>
+          <div class="card" style="margin-bottom:16px">
+            <div class="card-h"><h3>ข้อมูลทราฟฟิก</h3></div>
+            <div class="card-b"><div class="kv" id="dNet"></div></div>
+          </div>
+          <div class="card" style="margin-bottom:16px">
+            <div class="card-h"><h3>ผลจากกลไก Hybrid Detection</h3><span class="tag t-n" id="dPath">—</span></div>
+            <div class="card-b"><div class="stage" id="dStage"></div><div class="budget" id="dBudget"></div></div>
+          </div>
+          <div class="card">
+            <div class="card-h"><h3>สิ่งที่ควรทำต่อ</h3></div>
+            <div class="card-b"><div class="recs" id="dRecs"></div></div>
+          </div>
+        </section>
+{% endblock %}

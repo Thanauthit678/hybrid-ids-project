@@ -1,0 +1,50 @@
+{% extends "base_app.html" %}
+{% block title %}ภาพรวมระบบ{% endblock %}
+{% block extra_head %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+{% endblock %}
+{% block content %}
+        <!-- DASHBOARD VIEW -->
+        <section class="view on" id="vDash">
+          <div class="vh">
+            <div><h1>ภาพรวมระบบ</h1><p>สรุปทราฟฟิกและเหตุการณ์ที่ตรวจพบตั้งแต่เริ่มเฝ้าระวังรอบนี้</p></div>
+            <div class="ctl"><select id="selWin"><option value="60">60 วินาทีล่าสุด</option><option value="300">5 นาทีล่าสุด</option></select></div>
+          </div>
+          <div class="kpis">
+            <div class="kpi"><div class="k">ทราฟฟิกทั้งหมด</div><div class="v" id="kTotal">0<small>โฟลว์</small></div><div class="d" id="kRate">0 โฟลว์/วินาที</div></div>
+            <div class="kpi k-red"><div class="k">Known Attack</div><div class="v" id="kKnown">0</div><div class="d">Random Forest จำแนกได้</div></div>
+            <div class="kpi k-warn"><div class="k">Unknown Attack</div><div class="v" id="kUnknown">0</div><div class="d">Isolation Forest จับความผิดปกติ</div></div>
+            <div class="kpi k-ok"><div class="k">Normal Traffic</div><div class="v" id="kNormal">0</div><div class="d">ผ่านทั้งสองโมเดล</div></div>
+            <div class="kpi k-red"><div class="k">ความเสี่ยงสูง</div><div class="v" id="kHigh">0</div><div class="d">คะแนน 71–100</div></div>
+            <div class="kpi"><div class="k">เหตุการณ์วันนี้</div><div class="v" id="kInc">0</div><div class="d">บันทึกลงฐานข้อมูลแล้ว</div></div>
+            <div class="kpi"><div class="k">เวลาประมวลผลเฉลี่ย</div><div class="v" id="kProc">0<small>ms</small></div><div class="d">เป้าหมาย ≤ 750 ms</div></div>
+          </div>
+          <div class="grid-2">
+            <div class="card">
+              <div class="card-h"><h3>ทราฟฟิกที่ตรวจสอบ แยกตามผลการจำแนก</h3><span class="tag t-hi">● กำลังรับข้อมูล</span></div>
+              <div class="card-b"><canvas id="chLine" height="118"></canvas></div>
+            </div>
+            <div class="card">
+              <div class="card-h"><h3>สัดส่วนผลการตรวจจับ</h3></div>
+              <div class="card-b"><canvas id="chPie" height="188"></canvas></div>
+            </div>
+          </div>
+          <div class="grid-3">
+            <div class="card">
+              <div class="card-h"><h3>การแจ้งเตือนล่าสุด</h3><button class="btn btn-s ghost" id="btnClearAlerts">ล้างรายการ</button></div>
+              <div class="tw"><table>
+                <thead><tr><th>เวลา</th><th>ต้นทาง</th><th>ประเภทการโจมตี</th><th>ความเสี่ยง</th><th>สถานะ</th></tr></thead>
+                <tbody id="tbAlerts"><tr><td colspan="5"><div class="empty">ยังไม่มีการแจ้งเตือน ระบบกำลังเฝ้าดูทราฟฟิกอยู่</div></td></tr></tbody>
+              </table></div>
+            </div>
+            <div class="card">
+              <div class="card-h"><h3>IP ต้นทางที่พบบ่อย</h3></div>
+              <div class="ranklist" id="rkSrc"><div class="empty">ยังไม่มีข้อมูล</div></div>
+            </div>
+            <div class="card">
+              <div class="card-h"><h3>IP ปลายทางที่ถูกยิงบ่อย</h3></div>
+              <div class="ranklist" id="rkDst"><div class="empty">ยังไม่มีข้อมูล</div></div>
+            </div>
+          </div>
+        </section>
+{% endblock %}

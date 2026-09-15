@@ -1,0 +1,38 @@
+{% extends "base_app.html" %}
+{% block title %}ฝึกโมเดล{% endblock %}
+{% block content %}
+        <!-- MODEL RETRAIN VIEW -->
+        <section class="view on" id="vTrain">
+          <div class="vh"><div><h1>ฝึกโมเดล</h1><p>ฝึก Random Forest และ Isolation Forest ใหม่จากชุดข้อมูล CICIDS2017</p></div></div>
+          <div class="grid-2">
+            <div class="card">
+              <div class="card-h"><h3>เริ่มรอบการฝึกใหม่</h3></div>
+              <div class="card-b">
+                <div class="field"><label>ชุดข้อมูล</label><select id="tvDs"><option>CICIDS2017 — ครบทุกวัน (2,830,743 แถว)</option><option>CICIDS2017 — เฉพาะวันพุธ (DoS/Heartbleed)</option><option>อัปโหลดไฟล์ CSV เอง</option></select></div>
+                <div class="field"><label>จัดการข้อมูลไม่สมดุล</label><select><option>SMOTE + Class Weighting</option><option>Class Weighting อย่างเดียว</option><option>ไม่ปรับ</option></select></div>
+                <div class="field"><label>ตัด Attack ออกเพื่อทดสอบ Unknown (Leave-One-Attack-Out)</label>
+                  <select id="tvLoao"><option value="">ไม่ตัด — ฝึกด้วยข้อมูลทั้งหมด</option><option>Port Scan</option><option>DDoS</option><option>Brute Force</option><option>Web Attack</option><option>Botnet</option><option>DoS</option><option>Heartbleed</option></select></div>
+                <button class="btn block" id="btnTrain">เริ่มฝึกโมเดล</button>
+                <div class="hint" id="trainLog">พร้อมเริ่มฝึก · รอบล่าสุดเสร็จเมื่อ 12 ก.ย. 2569 เวลา 09:41</div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-h"><h3>ผลการประเมินโมเดลปัจจุบัน</h3><span class="tag t-n">rf_v3 / if_v3</span></div>
+              <div class="tw"><table>
+                <thead><tr><th>ตัวชี้วัด</th><th>Random Forest</th><th>Isolation Forest</th><th>Hybrid</th></tr></thead>
+                <tbody class="mono">
+                  <tr><td>Accuracy</td><td>—</td><td>—</td><td>—</td></tr>
+                  <tr><td>Precision</td><td>—</td><td>—</td><td>—</td></tr>
+                  <tr><td>Recall</td><td>—</td><td>—</td><td>—</td></tr>
+                  <tr><td>F1-score</td><td>—</td><td>—</td><td>—</td></tr>
+                  <tr><td>ROC-AUC</td><td>—</td><td>—</td><td>—</td></tr>
+                  <tr><td>Unknown Attack Detection Rate</td><td>—</td><td>—</td><td>—</td></tr>
+                </tbody>
+              </table></div>
+              <div class="card-b" style="border-top:1px solid var(--line-2);color:var(--muted);font-size:12.5px;line-height:1.7">
+                ช่องเหล่านี้เว้นไว้ให้กรอกด้วยผลการทดลองจริงในบทที่ 4 ต้นแบบนี้ยังไม่ได้ฝึกโมเดลจริง จึงไม่ใส่ตัวเลขสมมติลงไป
+              </div>
+            </div>
+          </div>
+        </section>
+{% endblock %}

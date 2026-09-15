@@ -1,0 +1,16 @@
+{% extends "base_auth.html" %}
+{% block title %}สร้างบัญชี{% endblock %}
+{% block auth_form %}
+        <div class="form-box" id="pgSignup">
+          <h2>สร้างบัญชี</h2>
+          <p class="sub">บัญชีใหม่ต้องรอผู้ดูแลระบบอนุมัติก่อนใช้งาน</p>
+          <div class="field"><label>อีเมล</label><input type="email" placeholder="you@org.ac.th"></div>
+          <div class="field"><label>ชื่อผู้ใช้งาน</label><input type="text" placeholder="เช่น noc-thanat"></div>
+          <div class="field"><label>รหัสผ่าน</label><input type="password" placeholder="อย่างน้อย 8 ตัวอักษร"></div>
+          <div class="field"><label>ยืนยันรหัสผ่าน</label><input type="password" placeholder="พิมพ์รหัสผ่านอีกครั้ง"></div>
+          <button class="btn block" onclick="toast('ส่งคำขอสร้างบัญชีแล้ว รอผู้ดูแลระบบอนุมัติ')">สร้างบัญชี</button>
+          <div class="form-links">
+            <a href="{{ url_for('login') }}">กลับไปหน้าเข้าสู่ระบบ</a>
+          </div>
+        </div>
+{% endblock %}

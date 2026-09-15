@@ -1,0 +1,17 @@
+{% extends "base_auth.html" %}
+{% block title %}เข้าสู่ระบบ{% endblock %}
+{% block auth_form %}
+        <div class="form-box" id="pgLogin">
+          <h2>เข้าสู่ระบบ</h2>
+          <p class="sub">ระบบนี้เปิดให้เฉพาะผู้ดูแลระบบเท่านั้น</p>
+          <div class="err" id="loginErr">อีเมลหรือรหัสผ่านไม่ถูกต้อง ลองใหม่อีกครั้ง</div>
+          <div class="field"><label for="liEmail">อีเมล</label><input id="liEmail" type="email" value="admin@nids.local" autocomplete="username"></div>
+          <div class="field"><label for="liPass">รหัสผ่าน</label><input id="liPass" type="password" value="admin1234" autocomplete="current-password"></div>
+          <button class="btn block" id="btnLogin">เข้าสู่ระบบ</button>
+          <div class="form-links">
+            <a href="{{ url_for('forgot_password') }}">ลืมรหัสผ่าน</a>
+            <a href="{{ url_for('signup') }}">สร้างบัญชีใหม่</a>
+          </div>
+          <div class="hint">บัญชีสำหรับทดลอง: <b>admin@nids.local</b> / <b>admin1234</b></div>
+        </div>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends "base_app.html" %}
+{% block title %}ประวัติแจ้งเตือน{% endblock %}
+{% block content %}
+        <!-- NOTIFICATION VIEW -->
+        <section class="view on" id="vNoti">
+          <div class="vh"><div><h1>ประวัติแจ้งเตือน</h1><p>ข้อความที่ส่งออกทาง LINE Official Account พร้อมสถานะการส่ง</p></div>
+            <button class="btn btn-s ghost" id="btnResendAll">ส่งซ้ำรายการที่ล้มเหลว</button>
+          </div>
+          <div class="grid-2">
+            <div class="card">
+              <div class="card-h"><h3>รายการที่ส่งออก</h3><span class="tag t-n" id="nCount">0 รายการ</span></div>
+              <div class="tw" style="max-height:400px;overflow-y:auto"><table>
+                <thead><tr><th>เวลาส่ง</th><th>เหตุการณ์</th><th>ผู้รับ</th><th>สถานะ</th><th></th></tr></thead>
+                <tbody id="tbNoti"><tr><td colspan="5"><div class="empty">ยังไม่มีการแจ้งเตือนถูกส่งออก</div></td></tr></tbody>
+              </table></div>
+            </div>
+            <div class="card">
+              <div class="card-h"><h3>ตัวอย่างข้อความล่าสุด</h3></div>
+              <div class="card-b"><div class="linebox" id="lineBox">
+                <div class="line-av">LINE</div>
+                <div class="line-msg"><div class="h">แจ้งเตือนภัยคุกคามเครือข่าย</div><div style="color:#8A7C7E">ยังไม่มีข้อความถูกส่งออก</div></div>
+              </div></div>
+            </div>
+          </div>
+        </section>
+{% endblock %}

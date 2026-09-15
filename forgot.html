@@ -1,0 +1,14 @@
+{% extends "base_auth.html" %}
+{% block title %}ลืมรหัสผ่าน{% endblock %}
+{% block auth_form %}
+        <div class="form-box" id="pgForgot">
+          <h2>ลืมรหัสผ่าน</h2>
+          <p class="sub">กรอกอีเมลที่ใช้สมัคร ระบบจะส่งลิงก์ตั้งรหัสผ่านใหม่ไปให้</p>
+          <div class="field"><label>อีเมล</label><input type="email" placeholder="you@org.ac.th"></div>
+          <button class="btn block" onclick="toast('ส่งลิงก์ตั้งรหัสผ่านใหม่ไปที่อีเมลแล้ว')">ส่งลิงก์ตั้งรหัสผ่าน</button>
+          <div class="form-links">
+            <a href="{{ url_for('login') }}">กลับไปหน้าเข้าสู่ระบบ</a>
+            <a href="{{ url_for('signup') }}">สร้างบัญชี</a>
+          </div>
+        </div>
+{% endblock %}

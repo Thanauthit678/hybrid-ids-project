@@ -1,0 +1,33 @@
+{% extends "base_app.html" %}
+{% block title %}ทราฟฟิกสด{% endblock %}
+{% block content %}
+        <!-- LIVE VIEW -->
+        <section class="view on" id="vLive">
+          <div class="vh"><div><h1>ทราฟฟิกสด</h1><p>ดูผลการตรวจจับรายโฟลว์ พร้อมบันทึกการทำงานของทั้งสองโมเดล</p></div></div>
+          <div class="kpis">
+            <div class="kpi"><div class="k">โฟลว์ต่อวินาที</div><div class="v" id="lPps">0</div><div class="d">ค่าเฉลี่ย 10 วินาทีล่าสุด</div></div>
+            <div class="kpi"><div class="k">ปริมาณข้อมูลขาเข้า</div><div class="v" id="lMbps">0<small>Mbps</small></div><div class="d">วัดที่ interface eth0</div></div>
+            <div class="kpi"><div class="k">เวลาประมวลผลล่าสุด</div><div class="v" id="lProc">0<small>ms</small></div><div class="d">Preprocessing + RF + IF</div></div>
+            <div class="kpi k-ok"><div class="k">สถานะการตรวจจับ</div><div class="v" style="font-size:19px" id="lStat">ทำงานอยู่</div><div class="d">โมเดล rf_v3 / if_v3</div></div>
+          </div>
+          <div class="card" style="margin-bottom:16px">
+            <div class="card-h">
+              <h3>โฟลว์ที่ผ่านการตรวจจับ</h3>
+              <div class="ctl">
+                <select id="fRes"><option value="">ผลตรวจจับทั้งหมด</option><option>Known Attack</option><option>Unknown Attack</option><option>Normal</option></select>
+                <select id="fProto"><option value="">โปรโตคอลทั้งหมด</option><option>TCP</option><option>UDP</option><option>ICMP</option></select>
+                <select id="fRisk"><option value="">ความเสี่ยงทั้งหมด</option><option>High</option><option>Medium</option><option>Low</option></select>
+                <input id="fQ" type="search" placeholder="ค้นหา IP">
+              </div>
+            </div>
+            <div class="tw" style="max-height:340px;overflow-y:auto"><table>
+              <thead><tr><th>เวลา</th><th>Source IP</th><th>Destination IP</th><th>Proto</th><th>ผลตรวจจับ</th><th>ความเชื่อมั่น</th><th>ความเสี่ยง</th></tr></thead>
+              <tbody id="tbLive"><tr><td colspan="7"><div class="empty">รอโฟลว์แรกเข้าระบบ</div></td></tr></tbody>
+            </table></div>
+          </div>
+          <div class="card">
+            <div class="card-h"><h3>บันทึกการทำงานของ Detection Engine</h3><button class="btn btn-s ghost" id="btnClearLog">ล้างหน้าจอ</button></div>
+            <div class="card-b"><div class="console" id="console"><div><span class="t">--:--:--</span> <span class="sys">[SYS]</span> รอเริ่มรับทราฟฟิก</div></div></div>
+          </div>
+        </section>
+{% endblock %}

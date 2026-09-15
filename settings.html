@@ -1,0 +1,36 @@
+{% extends "base_app.html" %}
+{% block title %}ตั้งค่า{% endblock %}
+{% block content %}
+        <!-- SETTINGS VIEW -->
+        <section class="view on" id="vSet">
+          <div class="vh"><div><h1>ตั้งค่า</h1><p>ปรับการแจ้งเตือน เกณฑ์การตรวจจับ และการจัดการข้อมูล</p></div>
+            <button class="btn btn-s" onclick="toast('บันทึกการตั้งค่าแล้ว')">บันทึกการตั้งค่า</button></div>
+          <div class="set-grid">
+            <div class="card"><div class="card-h"><h3>การแจ้งเตือน</h3></div><div class="card-b">
+              <div class="srow"><div class="l">แจ้งเตือนผ่าน LINE<small>ส่งเข้า LINE Official Account ของทีม</small></div><button class="sw on" data-sw><i></i></button></div>
+              <div class="srow"><div class="l">แจ้งเตือนผ่านอีเมล<small>ส่งสรุปรายวันเวลา 08:00</small></div><button class="sw on" data-sw><i></i></button></div>
+              <div class="srow"><div class="l">เสียงเตือนในหน้าจอ<small>ดังเมื่อพบเหตุการณ์ความเสี่ยงสูง</small></div><button class="sw" data-sw><i></i></button></div>
+              <div class="srow"><div class="l">ระดับที่เริ่มแจ้งเตือน<small>ต่ำกว่านี้จะบันทึกเงียบ ๆ ไม่ส่งออก</small></div>
+                <select id="setThresh" style="padding:8px 11px;border:1.5px solid var(--line);border-radius:9px;font-size:13px"><option value="71">เฉพาะ High</option><option value="31" selected>Medium ขึ้นไป</option><option value="0">ทุกเหตุการณ์</option></select></div>
+            </div></div>
+
+            <div class="card"><div class="card-h"><h3>กลไกการตรวจจับ</h3></div><div class="card-b">
+              <div class="srow"><div class="l">ค่า Contamination ของ Isolation Forest<small>สัดส่วนข้อมูลผิดปกติที่คาดว่าจะพบ</small></div>
+                <select id="setCont" style="padding:8px 11px;border:1.5px solid var(--line);border-radius:9px;font-size:13px"><option>0.01</option><option selected>0.03</option><option>0.05</option><option>0.10</option></select></div>
+              <div class="srow"><div class="l">ส่งต่อ Isolation Forest เมื่อ RF บอกว่าปกติ<small>หัวใจของกลไก Cascade</small></div><button class="sw on" data-sw><i></i></button></div>
+              <div class="srow"><div class="l">Interface ที่ดักจับ<small>จุดที่ PyShark เกาะอยู่</small></div>
+                <select style="padding:8px 11px;border:1.5px solid var(--line);border-radius:9px;font-size:13px"><option>eth0</option><option>wlan0</option><option>any</option></select></div>
+              <div class="srow"><div class="l">ความเร็วทราฟฟิกจำลอง<small>ใช้เฉพาะในต้นแบบนี้</small></div>
+                <select id="setSpeed" style="padding:8px 11px;border:1.5px solid var(--line);border-radius:9px;font-size:13px"><option value="1600">ช้า</option><option value="900" selected>ปกติ</option><option value="350">เร็ว</option></select></div>
+            </div></div>
+
+            <div class="card"><div class="card-h"><h3>ข้อมูลและระบบ</h3></div><div class="card-b">
+              <div class="srow"><div class="l">เวอร์ชันระบบ</div><span class="mono">1.0.0</span></div>
+              <div class="srow"><div class="l">ฐานข้อมูล</div><span class="mono">SQLite · nids.db</span></div>
+              <div class="srow"><div class="l">สำรองข้อมูลล่าสุด</div><span class="mono">14 ก.ย. 2569 03:00</span></div>
+              <div class="srow"><div class="l">ล้างบันทึกเหตุการณ์เก่า<small>ลบรายการที่เก่ากว่า 90 วัน</small></div><button class="btn btn-s ghost" id="btnPurge">ล้างข้อมูล</button></div>
+              <div class="srow"><div class="l">ดาวน์โหลดบันทึกทั้งหมด<small>ไฟล์ CSV สำหรับเก็บไว้</small></div><button class="btn btn-s ghost" id="btnCsv2">ดาวน์โหลด</button></div>
+            </div></div>
+          </div>
+        </section>
+{% endblock %}

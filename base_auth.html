@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}เข้าสู่ระบบ{% endblock %} — Hybrid NIDS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    <!-- AUTH SECTION -->
+    <div class="auth" id="auth">
+      <div class="auth-art">
+        <div class="mark">
+          <div class="mark-badge">ID</div>
+          <div class="mark-name">Hybrid NIDS<small>เฝ้าระวังเครือข่าย</small></div>
+        </div>
+        <div>
+          <h1>ตรวจจับทั้งการโจมตีที่รู้จัก และที่ยังไม่มีใครเคยเห็น</h1>
+          <p>ทราฟฟิกทุกโฟลว์วิ่งผ่าน Random Forest ก่อน ถ้าผ่านฉลุยจะถูกส่งต่อให้ Isolation Forest ตรวจซ้ำอีกชั้น แจ้งเตือนถึงมือผู้ดูแลภายใน 1 วินาที</p>
+          <div class="pipe">
+            <span>Packet Capture</span><span>Preprocessing</span><span>Random Forest</span><span>Isolation Forest</span><span>Risk Assessment</span><span>LINE Alert</span>
+          </div>
+        </div>
+        <div class="auth-foot">
+          ธนัช ทานอุทิศ · อังคณา กันจินะ<br>
+          สาขาวิชาเทคโนโลยีสารสนเทศ มหาวิทยาลัยพะเยา
+        </div>
+      </div>
+
+      <div class="auth-form">
+        {% block auth_form %}{% endblock %}
+      </div>
+    </div>
+
+    <div class="toast" id="toast"></div>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+    {% block extra_script %}{% endblock %}
+</body>
+</html>

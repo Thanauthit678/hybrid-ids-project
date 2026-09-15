@@ -1,0 +1,26 @@
+{% extends "base_app.html" %}
+{% block title %}บันทึกเหตุการณ์{% endblock %}
+{% block content %}
+        <!-- LOGS VIEW -->
+        <section class="view on" id="vLogs">
+          <div class="vh"><div><h1>บันทึกเหตุการณ์</h1><p>เหตุการณ์ผิดปกติทั้งหมดที่ระบบบันทึกไว้ ใช้สืบย้อนหลังได้</p></div>
+            <div class="ctl"><button class="btn btn-s ghost" id="btnCsv">ดาวน์โหลด CSV</button><button class="btn btn-s dark" id="btnPdf">พิมพ์รายงาน</button></div>
+          </div>
+          <div class="card">
+            <div class="card-h">
+              <div class="ctl">
+                <input type="date" id="gFrom"><input type="date" id="gTo">
+                <select id="gType"><option value="">ประเภทการโจมตีทั้งหมด</option></select>
+                <select id="gRisk"><option value="">ความเสี่ยงทั้งหมด</option><option>High</option><option>Medium</option><option>Low</option></select>
+                <input id="gQ" type="search" placeholder="ค้นหา IP หรือรหัสเหตุการณ์">
+              </div>
+              <span class="tag t-n" id="gCount">0 รายการ</span>
+            </div>
+            <div class="tw"><table>
+              <thead><tr><th>รหัส</th><th>เวลา</th><th>Source IP</th><th>ประเภทการโจมตี</th><th>วิธีตรวจจับ</th><th>คะแนน</th><th>ความเสี่ยง</th><th>สถานะ</th><th></th></tr></thead>
+              <tbody id="tbLogs"><tr><td colspan="9"><div class="empty">ยังไม่มีเหตุการณ์ถูกบันทึก</div></td></tr></tbody>
+            </table></div>
+            <div class="pager" id="pager"></div>
+          </div>
+        </section>
+{% endblock %}

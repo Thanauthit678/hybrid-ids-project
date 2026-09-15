@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Hybrid NIDS{% endblock %} — Random Forest + Isolation Forest</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    {% block extra_head %}{% endblock %}
+</head>
+<body>
+
+    <!-- MAIN APP SHELL -->
+    <!-- ใส่ class "on" ตรงๆ (ไม่ต้องพึ่ง JS เติมให้เหมือนตอนเป็น SPA) เพราะหน้านี้ถูกเข้าถึง
+         ได้ก็ต่อเมื่อผ่านหน้า Login มาแล้วเท่านั้น (ผ่าน redirect ของ Flask) -->
+    <div class="app on" id="app">
+      <aside class="side">
+        <div class="mark">
+          <div class="mark-badge">ID</div>
+          <div class="mark-name">Hybrid NIDS<small>RF + ISOLATION FOREST</small></div>
+        </div>
+        <nav class="nav">
+          <div class="sep">เฝ้าระวัง</div>
+          <button class="{{ 'on' if active_page == 'dashboard' else '' }}" onclick="location.href='{{ url_for('dashboard') }}'"><span class="ico">◧</span> ภาพรวมระบบ</button>
+          <button class="{{ 'on' if active_page == 'live' else '' }}" onclick="location.href='{{ url_for('live_monitoring') }}'"><span class="ico">◉</span> ทราฟฟิกสด</button>
+          <div class="sep">เหตุการณ์</div>
+          <button class="{{ 'on' if active_page == 'logs' else '' }}" onclick="location.href='{{ url_for('incidents') }}'"><span class="ico">▤</span> บันทึกเหตุการณ์</button>
+          <button class="{{ 'on' if active_page == 'noti' else '' }}" onclick="location.href='{{ url_for('notifications') }}'"><span class="ico">◔</span> ประวัติแจ้งเตือน</button>
+          <div class="sep">ระบบ</div>
+          <button class="{{ 'on' if active_page == 'train' else '' }}" onclick="location.href='{{ url_for('train_model') }}'"><span class="ico">◈</span> ฝึกโมเดล</button>
+          <button class="{{ 'on' if active_page == 'settings' else '' }}" onclick="location.href='{{ url_for('settings') }}'"><span class="ico">⚙</span> ตั้งค่า</button>
+          <button class="{{ 'on' if active_page == 'profile' else '' }}" onclick="location.href='{{ url_for('profile') }}'"><span class="ico">◐</span> โปรไฟล์</button>
+          <button id="btnLogout" onclick="location.href='{{ url_for('logout') }}'"><span class="ico">↪</span> ออกจากระบบ</button>
+        </nav>
+        <div class="side-foot">เวอร์ชัน 1.0.0 · โมเดล rf_v3 / if_v3<br>ฝึกล่าสุด 12 ก.ย. 2569</div>
+      </aside>
+
+      <div class="main">
+        <div class="topbar">
+          <div class="tb-item"><span class="tb-k">การป้องกัน</span><span class="tb-v"><i class="led" id="ledProt"></i><span id="txtProt">กำลังป้องกัน</span></span></div>
+          <div class="tb-item"><span class="tb-k">เวลาปัจจุบัน</span><span class="tb-v mono" id="clock">—</span></div>
+          <div class="tb-item"><span class="tb-k">เซ็นเซอร์</span><span class="tb-v"><i class="led" id="ledConn"></i><span id="txtConn">เชื่อมต่ออยู่ · eth0</span></span></div>
+          <div class="tb-item"><span class="tb-k">เวลาตอบสนองล่าสุด</span><span class="tb-v mono" id="tbRt">— ms</span></div>
+          <div class="tb-right">
+            <button class="btn btn-s ghost" id="btnFeed">หยุดรับทราฟฟิก</button>
+            <button class="bell" id="bell" onclick="location.href='{{ url_for('notifications') }}'">◔<i class="dot" id="bellDot"></i></button>
+            <div class="avatar">TA</div>
+          </div>
+        </div>
+
+        {% block content %}{% endblock %}
+
+      </div>
+    </div>
+
+    <div class="toast" id="toast"></div>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+    {% block extra_script %}{% endblock %}
+</body>
+</html>

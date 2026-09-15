@@ -1,0 +1,26 @@
+{% extends "base_app.html" %}
+{% block title %}โปรไฟล์{% endblock %}
+{% block content %}
+        <!-- PROFILE VIEW -->
+        <section class="view on" id="vProf">
+          <div class="vh"><div><h1>โปรไฟล์</h1><p>ข้อมูลบัญชีผู้ดูแลระบบ</p></div></div>
+          <div class="grid-2">
+            <div class="card"><div class="card-h"><h3>ข้อมูลบัญชี</h3></div><div class="card-b">
+              <div style="display:flex;align-items:center;gap:16px;margin-bottom:22px">
+                <div class="avatar" style="width:62px;height:62px;font-size:22px">TA</div>
+                <div><div style="font-size:17px;font-weight:500">ธนัช ทานอุทิศ</div><div style="color:var(--muted);font-size:13px">ผู้ดูแลระบบ · เข้าใช้งานล่าสุดวันนี้</div></div>
+              </div>
+              <div class="field"><label>ชื่อผู้ใช้งาน</label><input value="thanat.admin"></div>
+              <div class="field"><label>อีเมล</label><input value="admin@nids.local"></div>
+              <div class="field"><label>LINE User ID ที่รับแจ้งเตือน</label><input value="Uxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"></div>
+              <button class="btn" onclick="toast('บันทึกข้อมูลโปรไฟล์แล้ว')">บันทึกข้อมูล</button>
+            </div></div>
+            <div class="card"><div class="card-h"><h3>เปลี่ยนรหัสผ่าน</h3></div><div class="card-b">
+              <div class="field"><label>รหัสผ่านปัจจุบัน</label><input type="password" placeholder="••••••••"></div>
+              <div class="field"><label>รหัสผ่านใหม่</label><input type="password" placeholder="อย่างน้อย 8 ตัวอักษร"></div>
+              <div class="field"><label>ยืนยันรหัสผ่านใหม่</label><input type="password" placeholder="พิมพ์อีกครั้ง"></div>
+              <button class="btn" onclick="toast('เปลี่ยนรหัสผ่านเรียบร้อย')">เปลี่ยนรหัสผ่าน</button>
+            </div></div>
+          </div>
+        </section>
+{% endblock %}
